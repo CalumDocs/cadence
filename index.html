@@ -464,6 +464,121 @@ body.motion-off *,body.motion-off *::before,body.motion-off *::after{animation:n
   .add-row .btn .add-lbl{display:none}
   .dock{gap:10px}.dock .dtime{font-size:18px}
 }
+
+/* ================= mobile app layout ================= */
+.m-only{display:none}
+.m-pts{display:none}
+@keyframes sheetUp{from{transform:translateY(100%)}}
+@media (max-width:700px){
+  .m-only{display:revert}
+  .app{padding-block:10px calc(env(safe-area-inset-bottom,0px) + 110px)}
+  .top{margin-bottom:10px}
+  #streakPill,#lifetimePill{display:none}
+  .pts-pill{display:inline-flex;color:var(--text);font-weight:600}
+  .pts-pill .num{color:var(--accent)}
+  .brand{font-size:15px}
+  .hello{text-align:center;margin-bottom:16px}
+  .hello .eyebrow{margin-bottom:8px}
+  .hello h1{font-size:30px;margin:0}
+  .hello p.sub{display:none}
+  .banner{flex-direction:column;align-items:stretch;text-align:center;gap:10px;padding:12px}
+  .banner p{flex:none;font-size:13px}
+  .banner .row{justify-content:center}
+
+  /* tabs */
+  body[data-mtab=today] :is(.o-score,.o-treats,.o-unlocks,.o-stats,.o-sugg){display:none}
+  body[data-mtab=progress] :is(.o-frog,.o-tasks,.o-treats,.o-sugg,#dayBar,.hello,.banner){display:none!important}
+  body[data-mtab=rewards] :is(.o-frog,.o-tasks,.o-score,.o-unlocks,.o-stats,.o-sugg,#dayBar,.hello,.banner){display:none!important}
+  body:not([data-mtab=today]) .fab{display:none!important}
+  .layout{gap:14px;align-items:stretch}
+  .layout>*,.col>*{min-width:0}
+  .col-side{position:static}
+  .m-title{display:block;font:600 26px/1.1 var(--display);letter-spacing:-.03em;text-align:center;margin:6px 0 14px}
+  body[data-mtab=today] .m-title{display:none}
+
+  /* day progress: just the essentials */
+  .daybar{padding:14px 16px;margin-bottom:14px}
+  .db-head{align-items:center}
+  .db-head .eyebrow{margin:0 0 4px}
+  .db-pct{font-size:26px}
+  .db-legend,.db-clock,.d-only{display:none}
+  .db-head{flex-wrap:nowrap}
+  .db-main{justify-content:space-between;width:100%}
+  .db-head>div:first-child{flex:1}
+  .db-track{height:8px;margin:22px 0 2px}
+
+  /* frog: centred and compact */
+  .frog-card{grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px;padding:20px 16px}
+  .frog-card .frog-art{width:92px;height:92px}
+  .frog-card p:not(.eyebrow){display:none}
+  .frog-card .eyebrow{margin-bottom:6px}
+  .frog-card h3{font-size:21px;margin-bottom:14px}
+  .frog-card .row{justify-content:center}
+  .frog-card .row .btn{flex:1 1 100%}
+  .frog-card .frog-worth{flex:1 1 100%;text-align:center}
+  .frog-pick{width:100%}
+  .frog-pick button{text-align:center}
+
+  /* list */
+  .o-tasks .card-h{flex-direction:column;align-items:stretch;gap:10px}
+  .o-tasks .card-h h2{display:none}
+  .list-tools{display:block}
+  #tabs{display:flex}
+  #tabs button{flex:1}
+  #viewTabs{display:none}
+  .area-filter{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+  .area-filter::-webkit-scrollbar{display:none}
+  .task{grid-template-columns:auto minmax(0,1fr) auto;gap:12px;padding:14px;align-items:center}
+  .task:hover{transform:none}
+  .check{width:28px;height:28px}
+  .t-actions{display:none}
+  .t-title{font-size:15.5px}
+  .t-meta{margin-top:4px}
+  .t-meta .tag:not(.tag-area):not(.tag-frog),.t-meta .earned{display:none}
+  .t-meta .tag-area{background:none;border:0;padding:0;color:var(--muted)}
+  .m-pts{display:block;font:500 12.5px/1 var(--mono);color:var(--muted);text-align:right;min-width:28px}
+  .task.done .m-pts{color:var(--accent)}
+  .group-h{padding:14px 2px 2px}
+
+  /* add sheet */
+  .o-add{position:fixed;left:0;right:0;bottom:0;z-index:96;margin:0;border-radius:22px 22px 0 0;border-bottom:0;
+    padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 18px);max-height:88vh;overflow-y:auto;
+    background:color-mix(in srgb,var(--bg) 94%,transparent);transform:translateY(105%);transition:transform .38s cubic-bezier(.2,.8,.2,1),visibility 0s linear .38s;visibility:hidden}
+  body.sheet-add .o-add{transform:none;visibility:visible;transition-delay:0s}
+  .add form{gap:14px}
+  .add .area-pick,.ts .area-pick{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+  .add .seg{flex:1}.add .seg button{flex:1;justify-content:center}
+  .add-opts{flex-wrap:nowrap}
+  .add-row .btn .add-lbl{display:inline}
+  .sheet-h{display:flex!important;align-items:center;justify-content:space-between}
+  .sheet-h b{font:600 17px/1 var(--display)}
+  .grab{width:38px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 8px}
+  .sheet-sugg .eyebrow{margin:4px 0 10px}
+  .sheet-sugg .chips{display:flex;flex-wrap:wrap;gap:8px}
+
+  .m-scrim{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);animation:fadeIn .25s ease}
+  .ts{position:fixed;left:0;right:0;bottom:0;z-index:96;border-radius:22px 22px 0 0;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 18px);
+    background:color-mix(in srgb,var(--bg) 94%,transparent);border:1px solid var(--line);border-bottom:0;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    display:flex;flex-direction:column;gap:14px;animation:sheetUp .35s cubic-bezier(.2,.8,.2,1);max-height:88vh;overflow-y:auto}
+  .ts .seg{display:flex}.ts .seg button{flex:1;justify-content:center}
+  .ts-acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px}
+  .ts-acts .btn{padding:12px 8px}
+  .ts .lbl-s{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:-6px}
+
+  /* fab + tab bar */
+  .fab{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 80px);z-index:60;width:58px;height:58px;border-radius:18px;display:grid!important;place-items:center;
+    background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));color:var(--on-accent);box-shadow:0 12px 30px color-mix(in srgb,var(--accent) 35%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+  .fab svg{width:26px;height:26px}
+  .fab:active{transform:scale(.94)}
+  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:61;display:flex!important;padding:8px 10px calc(env(safe-area-inset-bottom,0px) + 8px);
+    background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);border-top:1px solid var(--line)}
+  .tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:500;color:var(--muted);padding:5px 0;transition:color .2s}
+  .tabbar button svg{width:22px;height:22px}
+  .tabbar button[aria-selected=true]{color:var(--accent)}
+  #toasts{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
+  .dock{bottom:calc(env(safe-area-inset-bottom,0px) + 150px)}
+  body.has-dock #toasts{bottom:calc(env(safe-area-inset-bottom,0px) + 222px)}
+}
 </style>
 </head>
 <body>
@@ -475,6 +590,7 @@ body.motion-off *,body.motion-off *::before,body.motion-off *::after{animation:n
   <header class="top">
     <div class="brand"><span class="brand-mark" data-icon="mark"></span>Cadence</div>
     <div class="top-meta">
+      <span class="pill pts-pill m-only" id="ptsPill"></span>
       <span class="pill" id="streakPill" title="Days in a row you hit your daily goal"></span>
       <span class="pill" id="lifetimePill" title="Lifetime points unlock themes, effects and features"></span>
       <button class="icon-btn" id="openSettings" aria-label="Open settings" data-icon="gear"></button>
@@ -501,12 +617,15 @@ body.motion-off *,body.motion-off *::before,body.motion-off *::after{animation:n
     <div class="row"><button class="btn btn-primary btn-sm" id="clearExamples">Clear examples</button><button class="btn btn-ghost btn-sm" id="keepExamples">Keep for now</button></div>
   </div>
 
+  <h1 class="m-title m-only" id="mTitle"></h1>
   <div class="layout">
     <div class="col col-main">
       <section class="glass frog-card o-frog" id="frogCard"></section>
 
       <section class="glass add o-add">
         <form id="addForm" autocomplete="off">
+          <div class="grab m-only"></div>
+          <div class="sheet-h m-only" style="display:none"><b>New task</b><button type="button" class="btn btn-ghost btn-sm" id="closeAdd">Done</button></div>
           <div class="add-row">
             <input type="text" id="newTitle" maxlength="140" placeholder="Add a task" aria-label="New task">
             <button class="btn btn-primary" type="submit" aria-label="Add task"><span data-icon="plus"></span><span class="add-lbl">Add</span></button>
@@ -514,8 +633,9 @@ body.motion-off *,body.motion-off *::before,body.motion-off *::after{animation:n
           <div class="area-pick" id="areaPick" role="group" aria-label="Area"></div>
           <div class="add-opts">
             <div class="seg" role="group" aria-label="Effort" id="tierSeg"></div>
-            <button type="button" class="toggle-frog" id="newFrog" aria-pressed="false"><span data-icon="frog"></span>Set as frog</button>
+            <button type="button" class="toggle-frog" id="newFrog" aria-pressed="false"><span data-icon="frog"></span>Frog</button>
           </div>
+          <div class="sheet-sugg m-only"><p class="eyebrow">Suggested</p><div class="chips" id="sheetSugg"></div></div>
         </form>
       </section>
 
@@ -584,6 +704,14 @@ body.motion-off *,body.motion-off *::before,body.motion-off *::after{animation:n
       </section>
     </aside>
   </div>
+  <div class="m-scrim m-only" id="addScrim" hidden></div>
+  <div id="sheetRoot"></div>
+  <button class="fab m-only" id="fab" aria-label="Add a task"><span data-icon="plus"></span></button>
+  <nav class="tabbar m-only" id="tabbar" aria-label="Sections">
+    <button data-mtab="today" aria-selected="true"><span data-icon="lily"></span>Today</button>
+    <button data-mtab="progress" aria-selected="false"><span data-icon="chart"></span>Progress</button>
+    <button data-mtab="rewards" aria-selected="false"><span data-icon="gift"></span>Rewards</button>
+  </nav>
 </div>
 
 <div id="drawerRoot"></div>
@@ -1104,7 +1232,7 @@ function renderDayBar(){
   const tasks=S.day.tasks;const tot=tasks.reduce((a,t)=>a+worth(t),0);const doneW=tasks.filter(t=>t.done).reduce((a,t)=>a+worth(t),0);
   const pct=tot?Math.round(doneW/tot*100):0;const dn=tasks.filter(t=>t.done).length;
   const el=$('#dbPct');const prev=el._v??-1;el._v=pct;el.textContent=pct+'%';
-  $('#dbSub').textContent=tasks.length?`${dn} of ${tasks.length} tasks done · weighted by effort`:'Add tasks to start tracking';
+  $('#dbSub').innerHTML=tasks.length?`${dn} of ${tasks.length} done<span class="d-only"> · weighted by effort</span>`:'Add tasks to start';
   const cf=dayClockFrac();const cp=Math.round(cf*100);
   const pad=h=>pad2(Math.floor(h))+':'+pad2(Math.round((h%1)*60));
   let status='';if(tasks.length&&cf>0&&cf<1)status=pct>=cp?'<span class="ahead">Ahead of the clock</span>':`${cp-pct}% behind the clock`;
@@ -1144,7 +1272,8 @@ function rowHTML(t){
   <div class="t-actions">${!t.done?`<button class="act-frog" data-act="frog" aria-pressed="${t.frog}" aria-label="${t.frog?'Unset frog':'Set as frog'}" title="${t.frog?'Unset frog':'Set as frog'}">${icon('frog')}</button>`:''}
    ${!t.done&&focusOK?`<button data-act="focus" aria-label="Focus timer" title="Focus timer">${icon('timer')}</button>`:''}
    ${!t.done&&(filter==='all'||filter==='todo')?`<button class="grip" data-act="grip" aria-label="Drag to reorder" title="Drag to reorder">${icon('grip')}</button>`:''}
-   <button data-act="delete" aria-label="Delete" title="Delete">${icon('trash')}</button></div>`;
+   <button data-act="delete" aria-label="Delete" title="Delete">${icon('trash')}</button></div>
+  <span class="m-pts">${t.done?'+'+t.earned:pts}</span>`;
 }
 function renderTasks(){
   const ul=$('#taskList');const list=visibleTasks();
@@ -1260,7 +1389,7 @@ function renderStats(){
     <p class="note">Dots mark days the frog got done.</p>`;
 }
 let booted=false;
-function renderAll(){renderHeader();renderDayBar();renderFrog();renderTierSeg();renderAreaPick();renderTabs();renderAreaFilter();renderTasks();renderSuggest();renderScore();renderTreats();renderUnlocks();renderStats();}
+function renderAll(){renderMobile();renderHeader();renderDayBar();renderFrog();renderTierSeg();renderAreaPick();renderTabs();renderAreaFilter();renderTasks();renderSuggest();renderScore();renderTreats();renderUnlocks();renderStats();}
 
 /* ---------- unlock modal ---------- */
 let modalOpen=false;
@@ -1290,6 +1419,55 @@ function equip(u){const inf=unlockInfo(u);if(!isUnlocked(u.id))return;
 }
 
 /* ---------- focus timer ---------- */
+/* ---------- mobile ---------- */
+const isMobile=()=>mq('(max-width:700px)');
+function renderMobile(){
+  $('#ptsPill').innerHTML=`<span class="num">${fmt(S.day.points)}</span> pts`;
+  const tab=document.body.dataset.mtab||'today';$$('#tabbar [data-mtab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.mtab===tab));
+  $('#mTitle').textContent=tab==='progress'?'Progress':tab==='rewards'?'Rewards':'';
+  const a=areaById(S.settings.lastArea);const box=$('#sheetSugg');
+  if(!a){box.innerHTML='<span class="note">Pick an area to see suggestions.</span>';return}
+  const today=new Set(S.day.tasks.map(t=>t.title.toLowerCase()));
+  const list=a.sugg.filter(x=>!today.has(x.t.toLowerCase()));
+  box.style.setProperty('--ac',a.color);
+  box.innerHTML=list.length?list.map(x=>`<button type="button" class="chip-add" data-ss="${esc(x.t)}" data-st="${x.tier}">${icon('plus')}${esc(x.t)}</button>`).join(''):`<span class="note">All ${esc(a.name)} suggestions are on today’s list.</span>`;
+}
+function setMTab(t){document.body.dataset.mtab=t;renderMobile();scrollTo({top:0,behavior:'smooth'})}
+function openAdd(){document.body.classList.add('sheet-add');$('#addScrim').hidden=false;setTimeout(()=>$('#newTitle').focus(),60)}
+function closeAdd(){document.body.classList.remove('sheet-add');$('#addScrim').hidden=true;$('#newTitle').blur()}
+let tsId=null;
+function openTaskSheet(id){tsId=id;renderTaskSheet()}
+function closeTaskSheet(){tsId=null;$('#sheetRoot').innerHTML=''}
+function renderTaskSheet(){
+  const t=findTask(tsId);const root=$('#sheetRoot');if(!t){closeTaskSheet();return}
+  const focusOK=isUnlocked('feature:focus');
+  root.innerHTML=`<div class="m-scrim" data-tsclose></div><div class="ts" role="dialog" aria-label="Edit task"><div class="grab"></div>
+   <input class="inp" id="tsTitle" value="${esc(t.title)}" maxlength="140" aria-label="Task name" ${t.done?'disabled':''}>
+   ${t.done?'':`<div class="lbl-s">Area</div><div class="area-pick">${S.settings.areas.map(a=>`<button class="area-chip" style="--ac:${a.color}" data-ts-area="${a.id}" aria-pressed="${t.area===a.id}"><span class="dot"></span>${esc(a.name)}</button>`).join('')}</div>
+   <div class="lbl-s">Effort</div><div class="seg">${TIER_ORDER.map(k=>`<button data-ts-tier="${k}" data-tier="${k}" aria-pressed="${t.tier===k}">${TIERS[k].label}<span class="p">${S.settings.points[k]}</span></button>`).join('')}</div>`}
+   <div class="ts-acts">${t.done?`<button class="btn btn-ghost" data-ts="undo">Mark not done</button>`:`<button class="btn btn-ghost" data-ts="frog">${icon('frog')}${t.frog?'Unset frog':'Set as frog'}</button>${focusOK?`<button class="btn btn-ghost" data-ts="focus">${icon('timer')}Focus</button>`:''}`}<button class="btn btn-danger" data-ts="delete">${icon('trash')}Delete</button></div>
+   <button class="btn btn-primary" data-ts="done">Done</button></div>`;
+}
+$('#sheetRoot').addEventListener('click',e=>{
+  const t=findTask(tsId);if(!t)return;
+  if(e.target.closest('[data-tsclose]'))return saveTsTitle(),closeTaskSheet();
+  const ar=e.target.closest('[data-ts-area]');if(ar){t.area=ar.dataset.tsArea;persist();renderAll();renderTaskSheet();return}
+  const ti=e.target.closest('[data-ts-tier]');if(ti){t.tier=ti.dataset.tsTier;persist();renderAll();renderTaskSheet();return}
+  const b=e.target.closest('[data-ts]');if(!b)return;const a=b.dataset.ts;
+  if(a==='done'){saveTsTitle();closeTaskSheet()}
+  else if(a==='frog'){setFrog(t.id);closeTaskSheet()}
+  else if(a==='focus'){closeTaskSheet();openFocus(t.id)}
+  else if(a==='undo'){toggleTask(t.id);closeTaskSheet()}
+  else if(a==='delete'){closeTaskSheet();deleteTask(t.id)}
+});
+function saveTsTitle(){const t=findTask(tsId);const inp=$('#tsTitle');if(!t||!inp||t.done)return;const v=inp.value.trim();if(v&&v!==t.title){t.title=v;persist();renderAll()}}
+$('#tabbar').addEventListener('click',e=>{const b=e.target.closest('[data-mtab]');if(b)setMTab(b.dataset.mtab)});
+$('#fab').addEventListener('click',openAdd);
+$('#closeAdd').addEventListener('click',closeAdd);
+$('#addScrim').addEventListener('click',closeAdd);
+$('#sheetSugg').addEventListener('click',e=>{const b=e.target.closest('[data-ss]');if(!b)return;addTask(b.dataset.ss,b.dataset.st,false,b,S.settings.lastArea)});
+document.body.dataset.mtab='today';
+
 function openFocus(id){
   const t=findTask(id);if(!t)return;let dur=25;
   openModal(`<p class="eyebrow">Focus session</p><h2>${esc(t.title)}</h2><p>Stay on this one task until the timer ends. Finishing a session earns bonus points.</p>
@@ -1427,7 +1605,7 @@ $('#tierSeg').addEventListener('click',e=>{const b=e.target.closest('[data-tier]
 $('#newFrog').addEventListener('click',e=>{const b=e.currentTarget;b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')});
 $('#addForm').addEventListener('submit',e=>{e.preventDefault();const inp=$('#newTitle');const v=inp.value.trim();if(!v){inp.focus();return}
   const fb=$('#newFrog');addTask(v,$('#tierSeg').dataset.cur||'standard',fb.getAttribute('aria-pressed')==='true',inp);inp.value='';fb.setAttribute('aria-pressed','false');inp.focus()});
-$('#areaPick').addEventListener('click',e=>{const b=e.target.closest('[data-pick-area]');if(!b)return;S.settings.lastArea=b.dataset.pickArea;persist();renderAreaPick()});
+$('#areaPick').addEventListener('click',e=>{const b=e.target.closest('[data-pick-area]');if(!b)return;S.settings.lastArea=b.dataset.pickArea;persist();renderAreaPick();renderMobile()});
 $('#areaFilter').addEventListener('click',e=>{const b=e.target.closest('[data-filter-area]');if(!b)return;areaFilter=b.dataset.filterArea;renderAreaFilter();renderTasks()});
 $('#viewTabs').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(!b)return;S.settings.group=b.dataset.view==='group';persist();renderTabs();renderTasks()});
 $('#suggTabs').addEventListener('click',e=>{const b=e.target.closest('[data-sugg-area]');if(!b)return;suggArea=b.dataset.suggArea;renderSuggest()});
@@ -1436,6 +1614,7 @@ $('#suggList').addEventListener('click',e=>{const b=e.target.closest('[data-sugg
 $('#editSugg').addEventListener('click',()=>openSettings('areas'));
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;filter=b.dataset.filter;renderTabs();renderTasks()});
 $('#taskList').addEventListener('click',e=>{
+  if(isMobile()&&!e.target.closest('.check')){const li=e.target.closest('li.task');if(li){openTaskSheet(li.dataset.id);return}}
   const b=e.target.closest('[data-act]');if(!b)return;const li=b.closest('li.task');const id=li.dataset.id;const t=findTask(id);if(!t)return;const a=b.dataset.act;
   if(a==='toggle')toggleTask(id,b);
   else if(a==='frog')setFrog(id);
@@ -1488,7 +1667,7 @@ $('#dockRoot').addEventListener('click',e=>{const b=e.target.closest('[data-dock
   else if(a==='complete'){const t=findTask(f.taskId);S.focus=null;if(t&&!t.done){renderDock();toggleTask(t.id,b);return}}
   persist();renderDock()});
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(modalOpen)closeModal();else if(drawerOpen)closeSettings();return}
+  if(e.key==='Escape'){if(modalOpen)closeModal();else if(drawerOpen)closeSettings();else if(tsId)closeTaskSheet();else if(document.body.classList.contains('sheet-add'))closeAdd();return}
   const tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea'||e.target.isContentEditable||e.metaKey||e.ctrlKey||e.altKey)return;
 });
 /* cursor glow on glass */
